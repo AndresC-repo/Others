@@ -1,0 +1,12 @@
+{
+    "data_path": "data_path.csv",
+    "features": ["feature_1", "feature_2", "feature_3"],
+    "target": ["target"],
+    "model_save": "save",
+    "train_retrain": "train",
+    "max_epochs": 500,
+    "sequence": true,
+    "test_size": 0.2,
+    "val_size": 0.2,
+    "print_logs": true
+}
