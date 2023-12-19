@@ -1,0 +1,28 @@
+version: '3'
+services:
+  vsn_container:
+    build: . 
+    image: vsn_image
+    container_name: vsn_container
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    ipc: host
+    ulimits:
+      memlock: -1
+      stack: 67108864
+
+    volumes:
+      - .:/workdir
+      # Map to externals take bento models as example
+      - /home/dockeradmin/bentoml/models:/workdir/bentoml/models
+
+    network_mode: "Network_1" # connect to network Training
+    command: make main     # Override the default command if needed
+    #command: sh     # Override the default command if needed
+    #stdin_open: true       # docker run -i
+    #tty: true              # docker run -t
